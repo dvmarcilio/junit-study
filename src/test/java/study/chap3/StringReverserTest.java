@@ -22,8 +22,8 @@ public class StringReverserTest {
 		StringReverser.reverse(null);
 	}
 
-	private static final Object[] getInputValues() {
-		return $($("abcd", "dcba"), $("12345", "54321"));
+	static final Object[] getInputValues() {
+		return $($("abcd", "dcba"), $("12345", "54321"), $("", ""), $("a", "a"));
 	}
 
 	@Test
