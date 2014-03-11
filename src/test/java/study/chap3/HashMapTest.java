@@ -21,7 +21,18 @@ public class HashMapTest {
 		Integer key = 1;
 		String value = "first";
 		map.put(key, value);
-		assertEquals(value, map.get(1));
+		assertEquals(value, map.get(key));
+	}
+
+	@Test
+	public void addObjectWithExistentKeyUpdatesValue() throws Exception {
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		Integer key = 1;
+		String value = "first";
+		map.put(key, value);
+		String differentValue = "different";
+		map.put(key, differentValue);
+		assertEquals(differentValue, map.get(key));
 	}
 
 }
