@@ -11,18 +11,24 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public class FahrenheitCelsiusConverterTest {
 
-	@Test
-	public void shouldConvertCelsiusToFahrenheit() throws Exception {
-		assertEquals(32, FahrenheitCelsiusConverter.toFahrenheit(0));
-		assertEquals(98, FahrenheitCelsiusConverter.toFahrenheit(37));
-		assertEquals(212, FahrenheitCelsiusConverter.toFahrenheit(100));
+	static final Object[] getValues() {
+		return $($(32, 0), $(98, 37), $(212, 100));
 	}
 
 	@Test
-	public void shouldConvertFahrenheitToCelsius() throws Exception {
-		assertEquals(0, FahrenheitCelsiusConverter.toCelsius(32));
-		assertEquals(37, FahrenheitCelsiusConverter.toCelsius(98));
-		assertEquals(100, FahrenheitCelsiusConverter.toCelsius(212));
+	@Parameters(method = "getValues")
+	public void shouldConvertCelsiusToFahrenheit(int fahrenheitTemp,
+			int celsiusTemp) throws Exception {
+		assertEquals(fahrenheitTemp,
+				FahrenheitCelsiusConverter.toFahrenheit(celsiusTemp));
+	}
+
+	@Test
+	@Parameters(method = "getValues")
+	public void shouldConvertFahrenheitToCelsius(int fahrenheitTemp,
+			int celsiusTemp) throws Exception {
+		assertEquals(celsiusTemp,
+				FahrenheitCelsiusConverter.toCelsius(fahrenheitTemp));
 	}
 
 }
