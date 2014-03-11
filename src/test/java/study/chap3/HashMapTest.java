@@ -61,5 +61,11 @@ public class HashMapTest {
 		map.put(2, SECOND_VALUE);
 		map.put(3, THIRD_VALUE);
 	}
+	
+	@Test
+	public void nullCanBeAKey() throws Exception {
+		map.put(null, FIRST_VALUE);
+		assertEquals(FIRST_VALUE, map.get(null));
+	}
 
 }
