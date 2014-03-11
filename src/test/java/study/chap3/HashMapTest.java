@@ -49,4 +49,17 @@ public class HashMapTest {
 		assertEquals(DIFFERENT_VALUE, map.get(key));
 	}
 
+	@Test
+	public void clearRemovesAllContent() throws Exception {
+		fillMap();
+		map.clear();
+		assertTrue(map.isEmpty());
+	}
+
+	private void fillMap() {
+		map.put(1, FIRST_VALUE);
+		map.put(2, SECOND_VALUE);
+		map.put(3, THIRD_VALUE);
+	}
+
 }
