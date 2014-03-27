@@ -6,11 +6,13 @@ public class PasswordValidator {
 
 	public static final String MUST_BE_LONGER_MESSAGE = "Password must have at least 6 characters";
 	public static final String MUST_HAVE_DIGIT_MESSAGE = "Password must have at least one digit";
+	public static final String MUST_HAVE_LETTER_MESSAGE = "Password must have at least one letter";
 
 	public static boolean validate(String password) {
 		setPassword(password);
 		validateLength();
 		validateDigit();
+		validateLetter();
 		return true;
 	}
 
@@ -35,4 +37,18 @@ public class PasswordValidator {
 		}
 		return false;
 	}
+
+	private static void validateLetter() {
+		if (!passwordHasLetter())
+			throw new IllegalArgumentException(MUST_HAVE_LETTER_MESSAGE);
+	}
+
+	private static boolean passwordHasLetter() {
+		for (int i = 0; i < password.length(); i++) {
+			if (Character.isLetter(password.charAt(i)))
+				return true;
+		}
+		return false;
+	}
+
 }
