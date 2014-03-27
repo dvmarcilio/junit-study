@@ -31,8 +31,13 @@ public class PasswordValidator {
 	}
 
 	private static boolean passwordHasDigit() {
+		return validatePasswordThroughCharValidator(new DigitCharacterValidator());
+	}
+
+	private static boolean validatePasswordThroughCharValidator(
+			CharacterValidator charValidator) {
 		for (int i = 0; i < password.length(); i++) {
-			if (Character.isDigit(password.charAt(i)))
+			if (charValidator.validate(password.charAt(i)))
 				return true;
 		}
 		return false;
@@ -44,11 +49,7 @@ public class PasswordValidator {
 	}
 
 	private static boolean passwordHasLetter() {
-		for (int i = 0; i < password.length(); i++) {
-			if (Character.isLetter(password.charAt(i)))
-				return true;
-		}
-		return false;
+		return validatePasswordThroughCharValidator(new LetterCharacterValidator());
 	}
 
 }
