@@ -39,7 +39,7 @@ public class PasswordValidatorTest {
 	}
 
 	static final Object[] validPasswords() {
-		return $($("a23456"), $("1bcdef"), $("abcde12345"));
+		return $($("a23456"), $("1bcdef"), $("abcde12345"), $("1 a   "));
 	}
 
 	@Test
@@ -52,6 +52,17 @@ public class PasswordValidatorTest {
 	
 	static final Object[] noDigitPasswords() {
 		return $($("abcdef"), $("ABCDEF"), $("qwerty"));
+	}
+	
+	@Test
+	@Parameters(method = "noLetterPasswords")
+	public void passwordShouldHaveAtLeastOneLetter(String passwordWithNoLetter) throws Exception {
+		expectIllegalArgExcWithMessage(PasswordValidator.MUST_HAVE_LETTER_MESSAGE);
+		PasswordValidator.validate(passwordWithNoLetter);
+	}
+	
+	static final Object[] noLetterPasswords() {
+		return $($("123456"), $("654321"), $("1 &%$#@!()"));
 	}
 
 }
