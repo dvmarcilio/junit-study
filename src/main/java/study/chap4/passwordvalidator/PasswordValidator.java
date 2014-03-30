@@ -4,7 +4,10 @@ public class PasswordValidator {
 
 	private static String password;
 
-	public static final String MUST_BE_LONGER_MESSAGE = "Password must have at least 6 characters";
+	public static final Integer MINIMUM_LENGTH = 6;
+
+	public static final String MUST_BE_LONGER_MESSAGE = "Password must have at least + "
+			+ MINIMUM_LENGTH + " characters";
 	public static final String MUST_HAVE_DIGIT_MESSAGE = "Password must have at least one digit";
 	public static final String MUST_HAVE_LETTER_MESSAGE = "Password must have at least one letter";
 
@@ -21,7 +24,7 @@ public class PasswordValidator {
 	}
 
 	private static void validateLength() {
-		if (password.length() < 6)
+		if (password.length() < MINIMUM_LENGTH)
 			throw new IllegalArgumentException(MUST_BE_LONGER_MESSAGE);
 	}
 
