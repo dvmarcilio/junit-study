@@ -15,12 +15,16 @@ public class GroupsOfDigitsFinder {
 	@Parameters(method = "inputValues")
 	public void shouldReturnGroupsOfDigitsFoundOnString(String input,
 			String output) throws Exception {
-		assertEquals(output , GroupsOfDigits.find(input));
+		assertEquals(output, GroupsOfDigits.find(input));
 	}
 
 	static final Object[] inputValues() {
-		return $($("abc 12", ""), $("cdefg 345 12bb23", "345"),
-				$("cdefg 345 12bbb33 678tt", "345, 678"));
+		return $(
+				$("abc 12", ""),
+				$("cdefg 345 12bb23", "345"),
+				$("cdefg 345 12bbb33 678tt", "345, 678"),
+				$("abcdef12345gggg54321iii1234iii987ggg666",
+						"12345, 54321, 1234, 987, 666"));
 	}
 
 }
