@@ -34,10 +34,13 @@ public class BookingSystem {
 
 	public boolean isHourAvailable(int hour) {
 		for (BookingInterval bi : hoursBooked) {
-			if ((hour >= bi.getBeginHour() && hour <= bi.getEndHour())
-					|| (hour <= bi.getEndHour() && hour >= bi.getBeginHour()))
+			if (isHourInBetweenBookingInterval(hour, bi))
 				return false;
 		}
 		return true;
+	}
+
+	private boolean isHourInBetweenBookingInterval(int hour, BookingInterval bi) {
+		return hour >= bi.getBeginHour() && hour <= bi.getEndHour();
 	}
 }
