@@ -1,10 +1,9 @@
 package study.chap4.booking;
 
-import static org.junit.Assert.*;
 import static junitparams.JUnitParamsRunner.$;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import junitparams.JUnitParamsRunner;
@@ -63,22 +62,19 @@ public class BookingSystemTest {
 
 	@Test
 	public void returnsAListOfBookedHours() throws Exception {
-		List<BookingInterval> validIntervals = getBookingIntervals(getAllRawValidHoursIntervals());
+		List<BookingInterval> validIntervals = getValidIntervals();
 		addBookingIntervals(validIntervals);
 		assertEquals(bookingSystem.getBookedHours(), validIntervals);
 	}
 
-	private List<BookingInterval> getBookingIntervals(List<Object> rawInput) {
+	private List<BookingInterval> getValidIntervals() {
 		ArrayList<BookingInterval> list = new ArrayList<BookingInterval>();
-		for (Object element : rawInput) {
-			Object[] array = (Object[]) element;
-			list.add(new BookingInterval((int) array[0], (int) array[1]));
-		}
+		list.add(new BookingInterval(9,12));
+		list.add(new BookingInterval(13,14));
+		list.add(new BookingInterval(20,24));
+		list.add(new BookingInterval(15,17));
+		list.add(new BookingInterval(18, 19));
 		return list;
-	}
-
-	private List<Object> getAllRawValidHoursIntervals() {
-		return Arrays.asList(validIntervalValues());
 	}
 
 	private void addBookingIntervals(List<BookingInterval> intervals) {

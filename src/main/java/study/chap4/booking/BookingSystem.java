@@ -13,7 +13,16 @@ public class BookingSystem {
 	}
 
 	public void book(BookingInterval bookingInterval) {
-		hoursBooked.add(bookingInterval);
+		if (isIntervalAvailable(bookingInterval))
+			hoursBooked.add(bookingInterval);
+		else
+			throw new IllegalArgumentException(HOUR_DOUBLE_BOOKED_MESSAGE);
+	}
+
+	// Should this be public ? Hard to guess when not in a real world usage
+	private boolean isIntervalAvailable(BookingInterval bookingInterval) {
+		return isHourAvailable(bookingInterval.getBeginHour())
+				&& isHourAvailable(bookingInterval.getEndHour());
 	}
 
 	public boolean isIntervalBooked(int begin, int end) {
